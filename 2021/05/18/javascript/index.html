@@ -1,0 +1,322 @@
+<!DOCTYPE html><html lang="zh_CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>javascript | Hexo</title><meta name="author" content="Pink Pig"><meta name="copyright" content="Pink Pig"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1、什么是JavaScript？2、 快速入门3、数据类型4、函数5、内部对象6、面向对象编程7、操作BOM 对象 浏览器介绍  ​      window (重要)   navigator   screen   location (重要)  Location 代表当前页面的URL信息   123456host: &quot;fanyi.baidu.com&quot;href: &quot;htt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript">
+<meta property="og:url" content="https://pinkpig-ink.github.io/NiceCode.github.io/2021/05/18/javascript/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1、什么是JavaScript？2、 快速入门3、数据类型4、函数5、内部对象6、面向对象编程7、操作BOM 对象 浏览器介绍  ​      window (重要)   navigator   screen   location (重要)  Location 代表当前页面的URL信息   123456host: &quot;fanyi.baidu.com&quot;href: &quot;htt">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-05-18T15:30:45.000Z">
+<meta property="article:modified_time" content="2021-05-18T15:32:08.819Z">
+<meta property="article:author" content="Pink Pig">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/NiceCode.github.io/img/favicon.png"><link rel="canonical" href="https://pinkpig-ink.github.io/NiceCode.github.io/2021/05/18/javascript/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/NiceCode.github.io/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/NiceCode.github.io/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'javascript',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-05-18 23:32:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/NiceCode.github.io/archives/"><div class="headline">Articles</div><div class="length-num">6</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/NiceCode.github.io/">Hexo</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">javascript</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-05-18T15:30:45.000Z" title="Created 2021-05-18 23:30:45">2021-05-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-05-18T15:32:08.819Z" title="Updated 2021-05-18 23:32:08">2021-05-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="javascript"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1、什么是JavaScript？"><a href="#1、什么是JavaScript？" class="headerlink" title="1、什么是JavaScript？"></a>1、什么是JavaScript？</h2><h2 id="2、-快速入门"><a href="#2、-快速入门" class="headerlink" title="2、 快速入门"></a>2、 快速入门</h2><h2 id="3、数据类型"><a href="#3、数据类型" class="headerlink" title="3、数据类型"></a>3、数据类型</h2><h2 id="4、函数"><a href="#4、函数" class="headerlink" title="4、函数"></a>4、函数</h2><h2 id="5、内部对象"><a href="#5、内部对象" class="headerlink" title="5、内部对象"></a>5、内部对象</h2><h2 id="6、面向对象编程"><a href="#6、面向对象编程" class="headerlink" title="6、面向对象编程"></a>6、面向对象编程</h2><h2 id="7、操作BOM-对象"><a href="#7、操作BOM-对象" class="headerlink" title="7、操作BOM 对象"></a>7、操作BOM 对象</h2><blockquote>
+<p>浏览器介绍</p>
+</blockquote>
+<p>​    </p>
+<blockquote>
+<p>window (重要)</p>
+</blockquote>
+<blockquote>
+<p>navigator</p>
+</blockquote>
+<blockquote>
+<p>screen</p>
+</blockquote>
+<blockquote>
+<p>location (重要)</p>
+</blockquote>
+<p>Location 代表当前页面的URL信息  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">host: <span class="string">&quot;fanyi.baidu.com&quot;</span></span><br><span class="line"><span class="attr">href</span>: <span class="string">&quot;https://fanyi.baidu.com/?aldtype=85#en/zh/webkit&quot;</span></span><br><span class="line"><span class="attr">protocol</span>: <span class="string">&quot;https:&quot;</span></span><br><span class="line"><span class="attr">reload</span>: ƒ reload()</span><br><span class="line"><span class="comment">// 设置新的地址</span></span><br><span class="line">location.assgin(<span class="string">&#x27;网址&#x27;</span>); </span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>document</p>
+</blockquote>
+<p>document 代表当前的页面，HTML、DOM文档树</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.title</span><br><span class="line"><span class="string">&quot;百度翻译-200种语言互译、沟通全世界！&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>获取具体的文档树节点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;dl id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">        <span class="xml"><span class="tag">&lt;<span class="name">dt</span>&gt;</span>Java<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span></span><br><span class="line">        <span class="xml"><span class="tag">&lt;<span class="name">dd</span>&gt;</span>JavaEE<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span></span><br><span class="line">        <span class="xml"><span class="tag">&lt;<span class="name">dd</span>&gt;</span>JavaSE<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span></span><br><span class="line">    &lt;/dl&gt;   </span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">        <span class="keyword">var</span> dl = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;app&#x27;</span>);</span></span></span><br><span class="line"><span class="javascript"><span class="xml">     </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>控制台查看变量dl</p>
+<p><img src="/NiceCode.github.io/NiceCode.github/adminliu/Downloads/studyData/%E6%96%87%E6%A1%A3/%E6%96%87%E6%A1%A31/source/_posts/javascript/image-20210510190552932.png" alt="image-20210510190552932"></p>
+<p>获取网页的<code>cookie</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">document</span>.cookie</span><br><span class="line">&lt; <span class="string">&quot;REALTIME_TRANS_SWITCH=1; FANYI_WORD_SWITCH=1; HISTORY_SWITCH=1; SOUND_SPD_SWITCH=1;&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>history</p>
+</blockquote>
+<p>history 代表浏览器的历史记录</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">history.back(); <span class="comment">//后退</span></span><br><span class="line">history.forward(); 	<span class="comment">// 前进</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="8、操作DOM对象"><a href="#8、操作DOM对象" class="headerlink" title="8、操作DOM对象"></a>8、操作DOM对象</h2><blockquote>
+<p>核心</p>
+</blockquote>
+<p>浏览器网页就是一个树形DOM结构</p>
+<ul>
+<li>更新：更新DOM节点</li>
+<li>遍历DOM节点：得到DOM节点</li>
+<li>删除：删除一个DOM节点</li>
+<li>添加：添加一个新的节点</li>
+</ul>
+<blockquote>
+<p> 获得dom节点</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;block&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dl</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dt</span>&gt;</span>Java<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dd</span>&gt;</span>JavaEE<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dd</span>&gt;</span>JavaSE<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dl</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> dl = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;app&#x27;</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> block = <span class="built_in">document</span>.getElementsByClassName(<span class="string">&#x27;block&#x27;</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> dd = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&#x27;dd&#x27;</span>);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dl.children;</span><br></pre></td></tr></table></figure>
+
+<p>这是原生代码，以后会使用jquery</p>
+<blockquote>
+<p>更新结点</p>
+</blockquote>
+<ul>
+<li>==div.innerText = ‘123’==  修改文本的值</li>
+<li>==div.innerHTML = ‘&lt;b&gt;123&lt;/b&gt;’==  可以解析html标签</li>
+<li>==div.style.color = ‘red’== 可以解析CSS属性</li>
+</ul>
+<blockquote>
+<p>删除结点</p>
+</blockquote>
+<p>删除结点的步骤：类似链表删除结点，先获取父结点，再调用父结点的方法删除子节点</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;id1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;ulId&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;li&quot;</span>&gt;</span>l1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>l2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;id1&#x27;</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> self = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;li&#x27;</span>); </span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> father = self.parentNode;</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">father.removeChild(self)</span><br></pre></td></tr></table></figure>
+
+<p>==删除结点是一个动态的过程，要时刻注意孩子数组的大小变化==</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不要像下面这样删除，会错误father.removeChild(father.children[0]);father.removeChild(father.children[1]);father.removeChild(father.children[2]);</span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>插入结点</p>
+</blockquote>
+<p>我们获得了某个DOM结点，假设这个结点是空的，我们可以使用innerHTML就可增添一个html元素进入，但如果这个DOM结点已经存在元素了，我们就不能这样操作，会产生覆盖。</p>
+<p>==追加append==</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;l3&quot;</span>&gt;</span>l3<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;id1&quot;</span>&gt;</span>    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;ulId&quot;</span>&gt;</span>        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;li&quot;</span>&gt;</span>l1<span class="tag">&lt;/<span class="name">li</span>&gt;</span>        <span class="tag">&lt;<span class="name">li</span>&gt;</span>l2<span class="tag">&lt;/<span class="name">li</span>&gt;</span>    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript">    <span class="keyword">var</span> list = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;ulId&#x27;</span>),        l3 = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;l3&#x27;</span>); </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/NiceCode.github.io/NiceCode.github/adminliu/Downloads/studyData/%E6%96%87%E6%A1%A3/%E6%96%87%E6%A1%A31/source/_posts/javascript/image-20210510211212391.png" alt="image-20210510211212391"></p>
+<p>执行js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list.append(l3);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/NiceCode.github.io/NiceCode.github/adminliu/Downloads/studyData/%E6%96%87%E6%A1%A3/%E6%96%87%E6%A1%A31/source/_posts/javascript/image-20210510211319089.png" alt="image-20210510211319089"></p>
+<p>==l3被追加到ul里面了==</p>
+<blockquote>
+<p>创建结点加入</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript">    <span class="keyword">var</span> list = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;ulId&#x27;</span>),        l3 = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;l3&#x27;</span>),        l4 = <span class="built_in">document</span>.createElement(<span class="string">&#x27;li&#x27;</span>);    l4.id = <span class="string">&#x27;newL4&#x27;</span>;    l4.innerText = <span class="string">&#x27;新增加的标签&#x27;</span>;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l4list.appendChild(l4)</span><br></pre></td></tr></table></figure>
+
+<h2 id="9、操作表单-验证"><a href="#9、操作表单-验证" class="headerlink" title="9、操作表单 (验证)"></a>9、操作表单 (验证)</h2><blockquote>
+<p>表单是什么？ Form， DOM树</p>
+</blockquote>
+<ul>
+<li>文本框  text</li>
+<li>下拉框 <select></select></li>
+<li>单选框 radio</li>
+<li>多选框 checkbox</li>
+<li>隐藏域 hidden</li>
+<li>密码框 password</li>
+<li>……</li>
+</ul>
+<p>表单的目的：提交信息</p>
+<blockquote>
+<p>获得要提交的信息</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;id1&quot;</span>&gt;</span>    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;post&quot;</span>&gt;</span>        <span class="tag">&lt;<span class="name">span</span>&gt;</span>用户名：<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;user&quot;</span>&gt;</span>    <span class="tag">&lt;/<span class="name">form</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript">    <span class="keyword">var</span> input_text = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;user&#x27;</span>);    <span class="comment">//得到输入框的值    input_text.value;     //修改输入框的值    input_text.value = &#x27;xxxx&#x27;;</span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>表单提交验证</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;#&quot;</span> <span class="attr">method</span>=<span class="string">&quot;POST&quot;</span> &gt;</span>    <span class="tag">&lt;<span class="name">span</span>&gt;</span>用户名：<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;user&quot;</span> <span class="attr">name</span>=<span class="string">&quot;user&quot;</span>&gt;</span>    <span class="tag">&lt;<span class="name">span</span>&gt;</span>密码：<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">id</span>=<span class="string">&quot;pwd&quot;</span> <span class="attr">name</span>=<span class="string">&quot;pwd&quot;</span>&gt;</span>    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;f()&quot;</span> &gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;    <span class="keyword">var</span> user = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;user&#x27;</span>);    <span class="keyword">var</span> pwd = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;pwd&#x27;</span>);&#125;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>此时，我们去调试工具下点击<code>Network</code>下的<code>Name</code>，点开html文件往下能找到这样的信息：</p>
+<p><img src="/NiceCode.github.io/NiceCode.github/adminliu/Downloads/studyData/%E6%96%87%E6%A1%A3/%E6%96%87%E6%A1%A31/source/_posts/javascript/image-20210511120437632.png" alt="image-20210511120437632"></p>
+<p>为了数据的==安全性==，防止别人拿到明文密码，我们可以使用md5方式加密。</p>
+<p>==引入md5的函数库==</p>
+<p>在这找的<a target="_blank" rel="noopener" href="https://www.bootcdn.cn/blueimp-md5/">猫云</a></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.18.0/js/md5.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>==拿到明文密码并加密==</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;    <span class="keyword">var</span> user = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;user&#x27;</span>);    <span class="keyword">var</span> pwd = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;pwd&#x27;</span>);    pwd.value = md5(); <span class="comment">//md5&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>OK👌，已经加密好啦。</p>
+<p><img src="/NiceCode.github.io/NiceCode.github/adminliu/Downloads/studyData/%E6%96%87%E6%A1%A3/%E6%96%87%E6%A1%A31/source/_posts/javascript/image-20210511121013759.png" alt="image-20210511121013759"></p>
+<p>顺便记一个知识点</p>
+<p>==表单的提交时间绑定==</p>
+<h2 id="10、JQuery"><a href="#10、JQuery" class="headerlink" title="10、JQuery"></a>10、JQuery</h2><blockquote>
+<p>什么是jQuery？</p>
+</blockquote>
+<p><strong>jQuery</strong>是一套跨<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%80%8F%E8%A6%BD%E5%99%A8">浏览器</a>的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/JavaScript">JavaScript</a><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%87%BD%E5%BC%8F%E5%BA%AB">库</a>，简化<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTML">HTML</a>与JavaScript之间的操作。目前由Dave Methvin领导的团队进行开发。全球前10,000个访问最高的网站中，有65%使用了jQuery，是目前最受欢迎的JavaScript库</p>
+<blockquote>
+<p>用法</p>
+</blockquote>
+<p><strong>加载jQuery</strong></p>
+<p>jQuery库是包含所有公共DOM、事件、效果和Ajax函数的一个JavaScript文件。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;jquery.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>也可以直接从CDN中加载jQuery：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>        <span class="attr">src</span>=<span class="string">&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;</span>        <span class="attr">integrity</span>=<span class="string">&quot;sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=&quot;</span>        <span class="attr">crossorigin</span>=<span class="string">&quot;anonymous&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>使用风格</p>
+</blockquote>
+<p>jQuery有两种使用风格：</p>
+<ul>
+<li>通过jQuery对象的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95">工厂方法</a><code>$</code>函数。这些函数通常称作<em>命令</em>，可以链接，因为它们都返回jQuery对象。</li>
+<li>通过<code>$.</code>开头的函数。这些是<em>工具函数</em>，它们不直接作用于jQuery对象。</li>
+</ul>
+<p>在jQuery中访问和操作多个DOM节点通常从用CSS选择器字符串调用<code>$</code>函数开始。这会返回一个引用<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTML">HTML</a>页面中所有匹配元素的jQuery对象。比如<code>$(&quot;div.test&quot;)</code>，会返回一个拥有class <code>test</code>的所有<code>div</code>元素的jQuery对象。</p>
+<blockquote>
+<p>典型的代码开头</p>
+</blockquote>
+<p>通常，jQuery是通过将初始化代码和事件处理函数放入<code>$(handler)</code>中来使用的。当浏览器构建DOM并发送加载事件时触发。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;   <span class="comment">// 这个匿名函数是页面加载时要调用的第一个函数。   // jQuery代码，事件处理回调写在这里&#125;);</span></span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Pink Pig</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://pinkpig-ink.github.io/NiceCode.github.io/2021/05/18/javascript/">https://pinkpig-ink.github.io/NiceCode.github.io/2021/05/18/javascript/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/NiceCode.github.io/2021/05/18/JavaWeb/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/NiceCode.github.io/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">JavaWeb</div></div></a></div><div class="next-post pull-right"><a href="/NiceCode.github.io/2021/05/18/java/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/NiceCode.github.io/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">java</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/NiceCode.github.io/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Pink Pig</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/NiceCode.github.io/archives/"><div class="headline">Articles</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFJavaScript%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">1、什么是JavaScript？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="toc-number">2.</span> <span class="toc-text">2、 快速入门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">3、数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">4、函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E5%86%85%E9%83%A8%E5%AF%B9%E8%B1%A1"><span class="toc-number">5.</span> <span class="toc-text">5、内部对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B"><span class="toc-number">6.</span> <span class="toc-text">6、面向对象编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%E3%80%81%E6%93%8D%E4%BD%9CBOM-%E5%AF%B9%E8%B1%A1"><span class="toc-number">7.</span> <span class="toc-text">7、操作BOM 对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8%E3%80%81%E6%93%8D%E4%BD%9CDOM%E5%AF%B9%E8%B1%A1"><span class="toc-number">8.</span> <span class="toc-text">8、操作DOM对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9%E3%80%81%E6%93%8D%E4%BD%9C%E8%A1%A8%E5%8D%95-%E9%AA%8C%E8%AF%81"><span class="toc-number">9.</span> <span class="toc-text">9、操作表单 (验证)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10%E3%80%81JQuery"><span class="toc-number">10.</span> <span class="toc-text">10、JQuery</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/NiceCode.github.io/2021/05/18/openGuass%E7%99%BB%E9%99%86/" title="openGuass登陆"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/NiceCode.github.io/img/404.jpg'" alt="openGuass登陆"/></a><div class="content"><a class="title" href="/NiceCode.github.io/2021/05/18/openGuass%E7%99%BB%E9%99%86/" title="openGuass登陆">openGuass登陆</a><time datetime="2021-05-18T15:31:29.000Z" title="Created 2021-05-18 23:31:29">2021-05-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/NiceCode.github.io/2021/05/18/JavaWeb/" title="JavaWeb"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/NiceCode.github.io/img/404.jpg'" alt="JavaWeb"/></a><div class="content"><a class="title" href="/NiceCode.github.io/2021/05/18/JavaWeb/" title="JavaWeb">JavaWeb</a><time datetime="2021-05-18T15:31:12.000Z" title="Created 2021-05-18 23:31:12">2021-05-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/NiceCode.github.io/2021/05/18/javascript/" title="javascript"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/NiceCode.github.io/img/404.jpg'" alt="javascript"/></a><div class="content"><a class="title" href="/NiceCode.github.io/2021/05/18/javascript/" title="javascript">javascript</a><time datetime="2021-05-18T15:30:45.000Z" title="Created 2021-05-18 23:30:45">2021-05-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/NiceCode.github.io/2021/05/18/java/" title="java"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/NiceCode.github.io/img/404.jpg'" alt="java"/></a><div class="content"><a class="title" href="/NiceCode.github.io/2021/05/18/java/" title="java">java</a><time datetime="2021-05-18T15:29:36.000Z" title="Created 2021-05-18 23:29:36">2021-05-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/NiceCode.github.io/2021/05/18/index/" title="创建博客"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/NiceCode.github.io/img/404.jpg'" alt="创建博客"/></a><div class="content"><a class="title" href="/NiceCode.github.io/2021/05/18/index/" title="创建博客">创建博客</a><time datetime="2021-05-18T14:16:00.344Z" title="Created 2021-05-18 22:16:00">2021-05-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Pink Pig</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Toggle Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/NiceCode.github.io/js/utils.js"></script><script src="/NiceCode.github.io/js/main.js"></script><script src="/NiceCode.github.io/js/tw_cn.js"></script><div class="js-pjax"></div><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
